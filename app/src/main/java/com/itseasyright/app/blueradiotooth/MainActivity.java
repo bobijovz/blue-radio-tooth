@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.lang.reflect.Method;
 import java.util.Set;
@@ -69,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 //                unregisterReceiver(mReceiver);
                 try {
+                    Log.d("pairDevice()", String.valueOf(device.getBondState()));
                     Log.d("pairDevice()", "Start Pairing...");
                     Method m = device.getClass().getMethod("createBond", (Class[]) null);
                     m.invoke(device, (Object[]) null);
@@ -86,6 +88,11 @@ public class MainActivity extends AppCompatActivity {
                 } catch (Exception e) {
 //                    Log.d("pairDevice()", e.getMessage());
                 }
+                if(device.getBondState() == 12)
+                {
+                    Toast.makeText(MainActivity.this, "MEOW", Toast.LENGTH_SHORT).show();
+                }
+
 
             }
         });
