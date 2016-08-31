@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Blue Radio Tooth</string>
+    <string name="none_found">No device found</string>
+
 </resources>
